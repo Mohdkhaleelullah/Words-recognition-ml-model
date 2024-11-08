@@ -140,7 +140,7 @@ function handleGesture(gesture) {
             gestureData.device = gesture;
             device.innerText = gesture;
         } else if (gestureData.level == null) {
-            gestureData.level = "0";
+            gestureData.level = "3";
             level.innerText = '0';
         }else if (gesture.startsWith("level_")) {
             gestureData.level = gesture.slice(6);
@@ -162,7 +162,7 @@ function handleGesture(gesture) {
                 command.innerText = '';
                 indicator.style.backgroundColor = "Red";
                 indicator.innerText = "Please start recording";
-                gestureData = {device: "", level: "0", command: "" }; // Reset gestureData to an empty object
+                gestureData = {device: "", level: "3", command: "" }; // Reset gestureData to an empty object
             }
         }
     }
