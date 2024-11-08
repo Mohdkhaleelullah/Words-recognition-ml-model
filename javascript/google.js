@@ -20,14 +20,14 @@ let gestureData = null;
 let isListening = false;
 
 // =================================================================================================================================
-//                                                  Gesture Recognizer Intislizer
+//                                                  Gesture Recognizer Intislizer 2 is most good
 // =================================================================================================================================
 
 const createGestureRecognizer = async () => {
     const vision = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm");
     gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
         baseOptions: {
-            modelAssetPath: "./model/HandFlow2.task",
+            modelAssetPath: "./model/HandFlow5.task",
             delegate: "GPU"
         },
         runningMode: runningMode
@@ -124,6 +124,9 @@ const gestureDataRef = ref(database, 'gestureData');
 function handleGesture(gesture) {
     if (gesture === "started_listening") {
         isListening = true;
+        device.innerText = '';
+        level.innerText = '';
+        command.innerText = '';
         field.style.display = "flex";
         field2.style.display = "flex";
         field3.style.display = "flex";
@@ -154,9 +157,12 @@ function handleGesture(gesture) {
                 field.style.display = "none";
                 field2.style.display = "none";
                 field3.style.display = "none";
+                device.innerText = '';
+                level.innerText = '';
+                command.innerText = '';
                 indicator.style.backgroundColor = "Red";
                 indicator.innerText = "Please start recording";
-                gestureData = {}; // Reset gestureData to an empty object
+                gestureData = {device: "", level: "0", command: "" }; // Reset gestureData to an empty object
             }
         }
     }
