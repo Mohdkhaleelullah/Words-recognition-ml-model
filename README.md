@@ -76,3 +76,4 @@ The primary architect behind the model training and development of the web appli
 The success of our project hinged on the seamless integration of hardware components. We orchestrated an impressive fusion of Firebase service with the cost-effective ESP32, enabling us to harness gesture data for home automation purposes. Additionally, the prototype crafted by [@tarang_srivas](https://www.instagram.com/tarang_srivas/) underwent rigorous testing, ensuring its functionality and reliability. Moreover, we handcrafted the PCB (Printed Circuit Board) tailored specifically for this project, further enhancing its efficiency and performance. This intricate hardware design, orchestrated by Tarang Srivas, played a pivotal role in bringing our vision to fruition.
 
 - [@tarang_srivas](https://www.instagram.com/tarang_srivas/) - BTech ECE
+"# Words-recognition-ml-model" 
