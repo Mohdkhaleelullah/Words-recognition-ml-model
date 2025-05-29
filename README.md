@@ -1,52 +1,63 @@
-# Words Recognition ML Model
+# 🧠 Sign Language Words Recognition ML Model
 
-This repository contains a machine learning model designed for recognizing sign language words using preprocessed data and deep learning techniques.
+This repository contains a deep learning model for recognizing **word-level American Sign Language (ASL)** gestures. The model is trained using the **WLASL300** dataset and utilizes preprocessed skeletal/keypoint features to classify sign language words effectively.
 
 ---
-The file best_model.h5 is typically used in Keras (a high-level API of TensorFlow) to store a trained deep learning model.
-It is a file saved in the HDF5 (Hierarchical Data Format), and it stores a complete Keras model including:
 
-Model architecture:
-The structure of the model (layers, connections, etc.), which allows you to reinstantiate the exact same model later.
+## 📌 Overview
 
-Trained weights:
-All the parameters (weights and biases) the model has learned during training.
+This model uses deep learning techniques, including **body-part-specific processing and Transformer-based sequence modeling**, to recognize ASL words from keypoint data extracted from sign language videos.
+
+- **Task**: Word-level sign language recognition  
+- **Input**: Preprocessed keypoint features (hands, body, face) from sign language videos  
+- **Format**: Classification
+
+---
 
 ## 📊 Dataset Used
 
-✅ This model is trained on the **WLASL300** subset, which is a preprocessed version of the **Word-Level American Sign Language (WLASL)** dataset.  
-WLASL300 consists of ~300 common ASL words with multiple signer variations and video samples per word, making it ideal for early-stage gesture classification tasks.
+The model is trained on the **WLASL300** subset of the [WLASL Dataset](https://github.com/dxli94/WLASL), a curated dataset for **Word-Level American Sign Language**.
 
-📎 **More info**: [Preprocessed WLASL Data on Kaggle](https://www.kaggle.com/datasets/himanko/preprocessed-data-wlasl/code)
+- ~300 common ASL words  
+- Multiple signers per word  
+- High variability and real-world conditions  
+- Ideal for training generalizable word-level gesture classifiers
 
+📎 **Preprocessed WLASL data**: Available on [Kaggle](https://www.kaggle.com/datasets/himanko/preprocessed-data-wlasl/code)
+
+---
+
+## 🧠 Model Architecture
+
+The model saved in `best_model.h5` is a **Transformer-based deep learning model** with the following design:
+
+### ✔ Key Features:
+- **Modular body-part feature processing** (hands, pose, face)
+- **Positional encoding** for temporal awareness
+- **Multi-head self-attention layers**
+- **Layer normalization, dropout, and dense classification layers**
+- **Output layer**: Softmax for word classification
+
+### 🧩 Components:
+- `Input`: Shape = `(batch_size, time_steps, num_features)`
+- `TransformerEncoder` layers
+- `GlobalAveragePooling1D` for temporal aggregation
+- `Dense(softmax)` output for classification over ~300 ASL words
+
+---
 
 ## 📁 Files Included
 
-| File Name            | Description                              |
-|----------------------|------------------------------------------|
-| `best_model.h5`      | Trained deep learning model (Keras H5 format) |
-| `ORD2SIGN.npy`       | Mapping of label indices to sign words   |
-| `feature_labels.npy` | Labels corresponding to training data     |
-| `train.csv`          | CSV file containing metadata or raw data |
+| File Name            | Description                                                                 |
+|----------------------|-----------------------------------------------------------------------------|
+| `best_model.h5`      | Trained deep learning model (Keras HDF5 format)                             |
+| `ORD2SIGN.npy`       | Mapping from output indices to ASL word labels                              |
+| `feature_labels.npy` | Label vector for training/validation data                                   |
+| `train.csv`          | Metadata about training samples (e.g., file names, labels, signer info)     |
+| `feature_data.npy`   | 🗃 **Large file** — extracted keypoint features from ASL videos              |
 
----
-
-## 🚫 Large File (Not on GitHub)
-
-Due to GitHub’s 100MB file limit, `feature_data.npy` is hosted on Google Drive.
-
-📥 **Download it here**:  
-[feature_data.npy (Google Drive)](https://drive.google.com/file/d/1HtA5Tzh9UWpD2vHciRLRjjBbvmupN9kZ/view?usp=drive_link)
-
-After downloading, place it in the same directory as your training notebook or script.
-
----
-
-## 🧠 Model Overview
-
-- Input: `feature_data.npy` – extracted features from videos/images
-- Labels: `feature_labels.npy`
-- Model: Deep learning (CNN/LSTM or similar)
-- Output: Predicted sign language word
+📥 Download `feature_data.npy` (hosted externally due to GitHub size limits):  
+👉 [Google Drive – feature_data.npy](https://drive.google.com/)  
+**Place it in the same directory as your script or notebook before training/evaluation.**
 
 ---
